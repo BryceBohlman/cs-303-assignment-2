@@ -2,42 +2,55 @@
 
 using namespace std;
 
+struct Node
+{
+	string dataItem;
+	void* next;
+	
+	Node() //Default Constructor
+	{
+		dataItem = "";
+		next = NULL;
+	}
+
+	Node(string newDataItem)
+	{
+		this->dataItem = newDataItem;
+		this->next = NULL;	
+	}
+};
+
 class Single_Linked_List
 {
-	void *head;
-	void *tail;
-	void *next;
+	void* head;
+	void* tail;
 	int num_items;
-	string dataItem;
 
-	Single_Linked_List() //Default Constructor
+public:
+	Single_Linked_List()
 	{
 		head = NULL;
 		tail = NULL;
-		next = NULL;
 		num_items = 0;
 	}
 
-	Single_Linked_List(void *preExistingHead, string& newDataItem)
+	void push_front(string newDataItem) //Insert item at head of list
 	{
-		head = preExistingHead;
-		tail = NULL;
-		next = NULL;
-		num_items = 1;
-		dataItem = newDataItem;
-	}
-
-	void push_front(string& newDataItem) //Insert item at head of list
-	{
-		Single_Linked_List new_list_item = Single_Linked_List(head, newDataItem);
-		new_list_item.next = head;
-		head = &newDataItem;
+		Node newHeadNode = Node(newDataItem);
+		newHeadNode.next = head;
+	
+		this->head = &newDataItem;
 		num_items++;
 	}
 
-	void push_back(string& newDataItem) //Inert   item at tail of list
+	void push_back(string& newDataItem) //Inert item at tail of list
 	{
-		Single_Linked_List new_list_item = Single_Linked_List(head, newDataItem);
+		Node newTailNode = Node(newDataItem);
+		newTailNode.next = NULL;
+
+
+		this->tail = &newDataItem;
+		num_items++;
 	}
 
 	void pop_front() //Remove item from head of list
