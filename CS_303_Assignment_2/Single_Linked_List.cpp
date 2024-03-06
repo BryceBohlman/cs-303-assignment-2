@@ -18,18 +18,18 @@ class Single_Linked_List
 		num_items = 0;
 	}
 
-	Single_Linked_List(string& firstDataItem)
+	Single_Linked_List(void *preExistingHead, string& newDataItem)
 	{
-		head = &firstDataItem;
-		tail = &firstDataItem;
+		head = preExistingHead;
+		tail = NULL;
 		next = NULL;
 		num_items = 1;
-		dataItem = firstDataItem;
+		dataItem = newDataItem;
 	}
 
 	void push_front(string& newDataItem) //Insert item at head of list
 	{
-		Single_Linked_List new_list_item = Single_Linked_List(newDataItem);
+		Single_Linked_List new_list_item = Single_Linked_List(head, newDataItem);
 		new_list_item.next = head;
 		head = &newDataItem;
 		num_items++;
@@ -37,7 +37,7 @@ class Single_Linked_List
 
 	void push_back(string& newDataItem) //Inert   item at tail of list
 	{
-		 
+		Single_Linked_List new_list_item = Single_Linked_List(head, newDataItem);
 	}
 
 	void pop_front() //Remove item from head of list
