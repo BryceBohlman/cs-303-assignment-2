@@ -29,12 +29,13 @@ class Single_Linked_List
 
 	void push_front(string& newDataItem) //Insert item at head of list
 	{
-		next = head;
+		Single_Linked_List new_list_item = Single_Linked_List(newDataItem);
+		new_list_item.next = head;
 		head = &newDataItem;
 		num_items++;
 	}
 
-	void push_back() //Inert   item at tail of list
+	void push_back(string& newDataItem) //Inert   item at tail of list
 	{
 		 
 	}
