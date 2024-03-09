@@ -2,28 +2,34 @@
 
 using namespace std;
 
-struct Node
+class Node
 {
 	string dataItem;
-	void* next;
+	Node* next;
 	
-	Node() //Default Constructor
+public:
+	Node() // default constructor
 	{
 		dataItem = "";
 		next = NULL;
 	}
 
-	Node(string newDataItem)
+	Node(string dataItem) //parameterized constructor
 	{
-		this->dataItem = newDataItem;
-		this->next = NULL;	
+		this->dataItem = dataItem;
+		next = NULL;
+	}
+
+	void setNext(Node *memAddress)
+	{
+		this->next = memAddress;
 	}
 };
 
 class Single_Linked_List
 {
-	void* head;
-	void* tail;
+	Node* head;
+	Node* tail;
 	int num_items;
 
 public:
@@ -37,19 +43,19 @@ public:
 	void push_front(string newDataItem) //Insert item at head of list
 	{
 		Node newHeadNode = Node(newDataItem);
-		newHeadNode.next = head;
+		newHeadNode.setNext(head);
 	
-		this->head = &newDataItem;
+		this->head = &newHeadNode;
 		num_items++;
 	}
 
-	void push_back(string& newDataItem) //Inert item at tail of list
+	void push_back(string newDataItem) //Inert item at tail of list
 	{
 		Node newTailNode = Node(newDataItem);
-		newTailNode.next = NULL;
+		newTailNode.setNext(head);
 
 
-		this->tail = &newDataItem;
+		this->tail = &newTailNode;
 		num_items++;
 	}
 
@@ -62,12 +68,12 @@ public:
 
 	}
 
-	void* front() //Return reference to head
+	Node* front() //Return reference to head
 	{
 		return head;
 	}
 
-	void* back() //Return reference to tail
+	Node* back() //Return reference to tail
 	{
 		return tail;
 	}
