@@ -24,6 +24,11 @@ public:
 	{
 		this->next = memAddress;
 	}
+
+	Node* getNext()
+	{
+		return next;
+	}
 };
 
 class Single_Linked_List
@@ -32,7 +37,7 @@ class Single_Linked_List
 	Node* tail;
 	int num_items;
 
-public:
+ public:
 	Single_Linked_List()
 	{
 		head = NULL;
@@ -40,7 +45,7 @@ public:
 		num_items = 0;
 	}
 
-	void push_front(string newDataItem) //Insert item at head of list
+	Node push_front(string newDataItem) //Insert item at head of list
 	{
 		Node newHeadNode = Node(newDataItem);
 		newHeadNode.setNext(head);
@@ -51,9 +56,22 @@ public:
 
 	void push_back(string newDataItem) //Inert item at tail of list
 	{
-		Node newTailNode = Node(newDataItem);
-		newTailNode.setNext(head);
+		Node newTailNode = Node(newDataItem);	//Initialize node and set local data item
 
+		if (this->empty())
+		{
+
+		}
+
+		Node iteratorNode = Node();
+		iteratorNode.setNext(head);
+
+		while (iteratorNode.getNext() != NULL)
+		{
+			iteratorNode.setNext(iteratorNode.getNext());
+		}
+
+		iteratorNode.setNext(&newTailNode);
 
 		this->tail = &newTailNode;
 		num_items++;
@@ -61,11 +79,29 @@ public:
 
 	void pop_front() //Remove item from head of list
 	{
+		if (this->empty())
+			return;
 
+		this->head = head->getNext();
+		num_items--;
 	}
+
 	void pop_back() //Remove item from tail of list
 	{
+		if (this->empty())
+			return;
 
+		Node iteratorNode = Node();
+		iteratorNode.setNext(head);
+
+		for (int i = 0; i < (num_items - 1); i++)
+		{
+			iteratorNode.setNext(iteratorNode.getNext());
+		}
+
+		this->tail = &iteratorNode;
+		iteratorNode.setNext(NULL);
+		num_items--;
 	}
 
 	Node* front() //Return reference to head
@@ -78,14 +114,23 @@ public:
 		return tail;
 	}
 
-	void empty() //Test if the linked list is empty
+	bool empty() //Test if the linked list is empty
 	{
-
+		if (this->head == NULL)
+			return true;
+		return false;
 	}
 
 	void insert(size_t index, const string& item)//Insert item at position index (starting at 0).Insert at the end if index is beyond the end of the list
 	{
+		if (index >= num_items)
+			this->push_back(item);
+		else
+		{
 
+		}
+
+		num_items++;
 	}
 
 	bool remove(size_t index) //Remove the item at position index. Return true if successful; return false if index is beyond the end of the list.
