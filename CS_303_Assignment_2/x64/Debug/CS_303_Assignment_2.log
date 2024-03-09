@@ -1,4 +1,5 @@
 ﻿  Single_Linked_List.cpp
   Main.cpp
-C:\ProgramsForSchool\CS_303\CS_303_Assignment_2\CS_303_Assignment_2\Main.cpp(10,11): error C2228: left of '.push_front' must have class/struct/union
+C:\ProgramsForSchool\CS_303\CS_303_Assignment_2\CS_303_Assignment_2\Main.cpp(7,21): warning C4930: 'Single_Linked_List nameList(void)': prototyped function not called (was a variable definition intended?)
   Generating Code...
+  CS_303_Assignment_2.vcxproj -> C:\ProgramsForSchool\CS_303\CS_303_Assignment_2\x64\Debug\CS_303_Assignment_2.exe

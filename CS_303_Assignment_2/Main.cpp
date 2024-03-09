@@ -6,13 +6,14 @@ int main()
 {
 	Single_Linked_List nameList();
 
-	nameList.push_front("Jerry");
+	//nameList.push_front("Jerry");
 	
 	
-	if (nameList.empty())
+	//if (nameList.empty())
 	{
 		cout << "List is empty";
 	}
+
 
 	return 0;
 }

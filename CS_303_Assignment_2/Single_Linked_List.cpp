@@ -127,7 +127,26 @@ class Single_Linked_List
 			this->push_back(item);
 		else
 		{
+			Node iteratorNode = Node();
+			iteratorNode.setNext(head);
 
+			for (int i = 0; i < index; i++)
+			{
+				iteratorNode.setNext(iteratorNode.getNext());
+			}
+
+			Node newNode(item);
+			newNode.setNext(iteratorNode.getNext());
+			iteratorNode.setNext(&newNode);
+		}
+
+		if (index == 0)
+		{
+			head++;
+		}
+		if (index == num_items - 1)
+		{
+			tail++;
 		}
 
 		num_items++;
