@@ -48,8 +48,13 @@ class Single_Linked_List
 	Node push_front(string newDataItem) //Insert item at head of list
 	{
 		Node newHeadNode = Node(newDataItem);
-		newHeadNode.setNext(head);
-	
+
+		if (this->empty())
+		{
+			tail = &newHeadNode;
+		}
+
+		newHeadNode.setNext(head);	
 		this->head = &newHeadNode;
 		num_items++;
 	}
@@ -60,7 +65,7 @@ class Single_Linked_List
 
 		if (this->empty())
 		{
-
+			head = &newTailNode;
 		}
 
 		Node iteratorNode = Node();
@@ -154,7 +159,20 @@ class Single_Linked_List
 
 	bool remove(size_t index) //Remove the item at position index. Return true if successful; return false if index is beyond the end of the list.
 	{
+		if (index >= num_items)
+			return false;
 
+		Node iteratorNode = Node();
+		iteratorNode.setNext(head);
+
+		for (int i = 0; i < index; i++)
+		{
+			iteratorNode.setNext(iteratorNode.getNext());
+		}
+
+
+		num_items--;
+		return true;
 	}
 
 	size_t find(const string& item) // Return the position of the first occurrence of item if it is found.Return the size of the list if it is not found
