@@ -29,6 +29,11 @@ public:
 	{
 		return next;
 	}
+
+	string readDataItem()
+	{
+		return dataItem;
+	}
 };
 
 class Single_Linked_List
@@ -163,23 +168,39 @@ class Single_Linked_List
 			return false;
 
 		Node iteratorNode = Node();
+		Node deletionNode = Node();
 		iteratorNode.setNext(head);
-
-		for (int i = 0; i < index; i++)
+		deletionNode.setNext(head);
+		
+		for (int i = 0; i < index - 1; i++)
 		{
 			iteratorNode.setNext(iteratorNode.getNext());
+			deletionNode.setNext(deletionNode.getNext());
 		}
 
-		Node deletionNode = Node();
-		deletionNode.setNext(&iteratorNode);
-		iteratorNode.setNext(iteratorNode.getNext());
-
+		deletionNode.setNext(deletionNode.getNext());
+		iteratorNode.setNext(deletionNode.getNext());
+		
+		free(&deletionNode);
 		num_items--;
+
 		return true;
 	}
 
 	size_t find(const string& item) // Return the position of the first occurrence of item if it is found.Return the size of the list if it is not found
 	{
+		int count = 0;
+		Node iteratorNode = Node();
+		iteratorNode.setNext(head);
 
+		while (iteratorNode.getNext() != NULL)
+		{
+			count++;
+			if (item == iteratorNode.readDataItem())
+				return count;
+			iteratorNode.setNext(iteratorNode.getNext());
+		}
+
+		return count;
 	}
 };

@@ -9,7 +9,7 @@ int main()
 	//nameList.push_front("Jerry");
 	
 	
-	//if (nameList.empty())
+	if (nameList.empty())
 	{
 		cout << "List is empty";
 	}
