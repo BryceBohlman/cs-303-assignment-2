@@ -143,15 +143,15 @@ class Single_Linked_List
 			Node newNode(item);
 			newNode.setNext(iteratorNode.getNext());
 			iteratorNode.setNext(&newNode);
-		}
 
-		if (index == 0)
-		{
-			head++;
-		}
-		if (index == num_items - 1)
-		{
-			tail++;
+			if (index == 0)
+			{
+				head = &newNode;
+			}
+			if (index == num_items - 1)
+			{
+				tail = &newNode;
+			}
 		}
 
 		num_items++;
@@ -170,6 +170,9 @@ class Single_Linked_List
 			iteratorNode.setNext(iteratorNode.getNext());
 		}
 
+		Node deletionNode = Node();
+		deletionNode.setNext(&iteratorNode);
+		iteratorNode.setNext(iteratorNode.getNext());
 
 		num_items--;
 		return true;
